@@ -1,22 +1,40 @@
-let arrSorting = function (array) {
-    if (!array.length) {
+/**
+ * Copyright(c) 2019. Synergy Systems & Solutions. @link : http://s3india.com 
+ *
+ * @module  arrSorting
+ * @file    Sorting.js
+ * @author  Gaganpreet Singh
+ * @summary This file contains implementation of selection sort algorithm.
+ *  
+ * Created on  :  07-08-2021
+ */
+
+/**
+ * @function arrSorting
+ * @param  arrVal 
+ * @returns Array in sorted manner
+ */
+
+let arrSorting = function (arrVal) {
+
+    if (!arrVal.length) {
         throw new Error("Empty array");
-    } else if (array.length === 1) {
-        return console.log(array[0]);
+    } else if (arrVal.length === 1) {
+        return console.log(arrVal[0]);
     } else {
-            for (var i = 0; i <= array.length; i++) {
-                let outerElement = array[i];
-                for (var j = i + 1; j <= array.length; j++) {// [3, 2, 8, 6 , 9 , 1];
-                    let innerElement = array[j];
+            for (var i = 0; i <= arrVal.length; i++) {
+                let outerElement = arrVal[i];
+                for (var j = i + 1; j <= arrVal.length; j++) {// [3, 2, 8, 6 , 9 , 1];
+                    let innerElement = arrVal[j];
                     if (outerElement > innerElement) {
-                        array[i] = innerElement;
-                        array[j] = outerElement; 
-                        innerElement = array[j];
-                        outerElement = array[i];
+                        arrVal[i] = innerElement;
+                        arrVal[j] = outerElement; 
+                        innerElement = arrVal[j];
+                        outerElement = arrVal[i];
                     }
                 }
             }
-            console.log(array);
+            console.log(arrVal);
     }
 }
 

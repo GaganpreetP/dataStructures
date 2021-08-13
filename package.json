@@ -1,15 +1,23 @@
 {
-  "name": "stack_queue",
+  "name": "stack_queues",
   "version": "1.0.0",
   "description": "A new module",
   "main": "main.js",
-  "dependencies": {
-    "nodemon": "^2.0.12"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gaganpreet Singh",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaganpreetP/dataStructures.git"
+  },
+  "keywords": [
+    "dataStructures"
+  ],
+  "bugs": {
+    "url": "https://github.com/GaganpreetP/dataStructures/issues"
+  },
+  "homepage": "https://github.com/GaganpreetP/dataStructures#readme",
+  "dependencies": {}
 }
