@@ -1,5 +1,5 @@
 /**
- * Copyright(c) 2019. Synergy Systems & Solutions. @link : http://s3india.com 
+ * Copyright(c) 2021. Synergy Systems & Solutions. @link : http://s3india.com 
  *
  * @module  binarySearch
  * @file    binarySearch.js
@@ -43,7 +43,7 @@ var binarySearch = function(arrVal , nNum){
     }
 return -1;
 }
-var array = [0 , 12 , 24 , 36 , 48 , 60 , 72 , 84 , 96 , 108 , 120 ];
-var nResult = binarySearch(array , 60);
+var arrNum = [0 , 12 , 24 , 36 , 48 , 60 , 72 , 84 , 96 , 108 , 120 ];
+var nResult = binarySearch(arrNum , 60);
 console.log("Value is present at index : " + nResult);
 

@@ -19,5 +19,7 @@
     "url": "https://github.com/GaganpreetP/dataStructures/issues"
   },
   "homepage": "https://github.com/GaganpreetP/dataStructures#readme",
-  "dependencies": {}
+  "dependencies": {
+    "date-and-time": "^2.0.0"
+  }
 }

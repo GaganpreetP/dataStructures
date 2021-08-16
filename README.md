@@ -9,7 +9,7 @@ Includes important searching and sorting algorithms along with Stack and Queue.
 Then...
 
 ```
-importing implement file to main.js file
+Basic implementation of data structures and algorithms.
 ```
 
 # Options

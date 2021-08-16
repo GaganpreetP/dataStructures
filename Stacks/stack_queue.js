@@ -1,5 +1,5 @@
 /**
- * Copyright(c) 2019. Synergy Systems & Solutions. @link : http://s3india.com 
+ * Copyright(c) 2021. Synergy Systems & Solutions. @link : http://s3india.com 
  *
  * @module  Stack and Queue
  * @file    implement.js
@@ -15,31 +15,30 @@
  * @param   arr
  * @constructor
  * @summary 
- *
- * @author Gaganpreet Singh
- * Created on: 10 - 08 - 2021
  */
+const log = require("../logger.js");
 
-function Stack(_arrValues){                              
+var instLog = new log.Logger();
+
+
+function Stack(arrValues) {
     /**
      * variables details
      */
     var self = this;
-    self._arrValues = _arrValues;                               
+    self._arrValues = arrValues;
 };
 
 /**
  * @method  Stack::push
  * @param   value
- * @returns Value pushed into array
+ * @returns none
  * @summary .push() pushes the value into the array
- *
- * @author Gaganpreet Singh
- * Created on: 10 - 08 - 2021
  */
-Stack.prototype.push = function(nValue){           
+Stack.prototype.push = function (nValue) {
     var self = this;
-    self._arrValues.push(nValue);                                 
+    self._arrValues.push(nValue);
+    console.log(self._arrValues);
 }
 
 /**
@@ -47,14 +46,15 @@ Stack.prototype.push = function(nValue){
  * @param   none
  * @returns Value popped from array
  * @summary .pop() returns value popped out from array
- *
- * @author Gaganpreet Singh
- * Created on: 10 - 08 - 2021
  */
 
-Stack.prototype.pop = function(){
+Stack.prototype.pop = function () {
     var self = this;
     self._arrValues.pop();
+    console.log(self._arrValues);
+    if (self._arrValues.length === 0) {
+        instLog.writeTrace();
+    }
 }
 
 /**
@@ -62,14 +62,12 @@ Stack.prototype.pop = function(){
  * @param   none
  * @returns value last entered into array
  * @summary .peek gives the top value in stack
- *
- * @author Gaganpreet Singh
- * Created on: 10 - 08 - 2021
  */
 
-Stack.prototype.peek = function(){
+Stack.prototype.peek = function () {
     var self = this;
-    self._arrValues[self._arrValues.length-1];
+    self._arrValues[self._arrValues.length - 1];
+    console.log(self._arrValues);
 }
 
 /**
@@ -82,7 +80,7 @@ Stack.prototype.peek = function(){
  * Created on: 10 - 08 - 2021
  */
 
-Stack.prototype.getDetails = function(){
+Stack.prototype.getDetails = function () {
     var self = this;
     console.log("Array contains " + (self._arrValues.length) + " value and topmost value is " + self._arrValues[self._arrValues.length - 1]);
 }
@@ -99,9 +97,9 @@ Stack.prototype.getDetails = function(){
  * Created on: 11 - 08 - 2021
  */
 
-function Queue(_arrValues){
+function Queue(arrValues) {
     var self = this;
-    self._arrValues = _arrValues;
+    self._arrValues = arrValues;
 }
 
 /**
@@ -114,10 +112,10 @@ function Queue(_arrValues){
  * Created on: 11 - 08 - 2021
  */
 
-Queue.prototype.enqueue = function(nValue){
+Queue.prototype.enqueue = function (nValue) {
     var self = this;
     self._arrValues.push(nValue);
-
+    console.log(self._arrValues);
 }
 
 /**
@@ -130,13 +128,16 @@ Queue.prototype.enqueue = function(nValue){
  * Created on: 11 - 08 - 2021
  */
 
-Queue.prototype.dequeue = function(){
+Queue.prototype.dequeue = function () {
     var self = this;
-    self._arrValues.splice(0 , 1);
+    self._arrValues.splice(0, 1);
+    console.log(self._arrValues);
 }
 
+
+
 //Exporting file to another file
-module.exports = {Stack , Queue};
+module.exports = { Stack, Queue };
 
 
 

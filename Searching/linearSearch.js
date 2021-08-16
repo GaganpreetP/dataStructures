@@ -1,5 +1,5 @@
 /**
- * Copyright(c) 2019. Synergy Systems & Solutions. @link : http://s3india.com 
+ * Copyright(c) 2021. Synergy Systems & Solutions. @link : http://s3india.com 
  *
  * @module  linearSearch
  * @file    linearSearch.js

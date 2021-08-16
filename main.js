@@ -1,22 +1,25 @@
 /**
- * Module Dependency
- * 
- * @constant fs  : The fs module provides an API for interacting with the file system in a manner
- * 
+ * Copyright(c) 2021. Synergy Systems & Solutions. @link : http://s3india.com 
+ *
+ * @module  Main
+ * @file    main.js
+ * @author  Gaganpreet Singh
+ * @summary This file contains implementation of stack and queue data structure.
+ *  
+ * Created on  :  13-08-2021
  */
 
-const instFile = require('./stack_queue/implement');
-/**
- * variables details
- */
+
+const file = require('./Stacks/stack_queue');
+
 var arrValues = [];
-var arr1 = new instFile.Queue(arrValues);
 
-arr1.enqueue(90);
-console.log(arr1);
+var instArr1 = new file.Stack(arrValues);
 
-arr1.dequeue();
-console.log(arr1);
+instArr1.push(90);
+
+instArr1.pop();
+
 
 
 
