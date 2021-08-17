@@ -132,6 +132,9 @@ Queue.prototype.dequeue = function () {
     var self = this;
     self._arrValues.splice(0, 1);
     console.log(self._arrValues);
+    if (self._arrValues.length === 0) {
+        instLog.writeTrace();
+    }
 }
 
 

@@ -8,19 +8,34 @@
  *  
  * Created on  :  13-08-2021
  */
-
+/**
+ * Module Dependency
+ * 
+ * @constant file         : The FILE imports stack_queue file from Stacks folder
+ */
 
 const file = require('./Stacks/stack_queue');
 
-var arrValues = [];
+/**
+ * variables details
+ * @const arrValues       : It will store all the operations being done in the array.
+ * @constant instArr1     : Creates a new instance of Object 
+ */
 
+var arrValues = [];
 var instArr1 = new file.Stack(arrValues);
 
 instArr1.push(90);
 
-instArr1.pop();
+// instArr1.pop();
 
+var instArr1 = new file.Queue(arrValues);
+instArr1.enqueue(100);
+instArr1.enqueue(110);
 
+instArr1.dequeue();
+instArr1.dequeue();
+instArr1.dequeue();
 
 
 

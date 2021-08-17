@@ -33,10 +33,10 @@
  */
  Logger.prototype.writeTrace = function(strMsg){
    //  var self = this;
-    strMsg = "Array is Empty";
+    strMsg = ("Array is Empty !"+ " User Logged at : " + date.format(now, 'DD/MM/YYYY HH:mm:ss'));
     console.trace(strMsg);
-    console.log(fs.writeFileSync("./sample.txt" , "User Logged at : " + date.format(now, 'DD/MM/YYYY HH:mm:ss')));
- 
+
+    fs.writeFileSync("./sample.txt" , strMsg);
  }
 
   /**
