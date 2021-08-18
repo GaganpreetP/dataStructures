@@ -8,7 +8,6 @@
  *  
  * Created on  :  10-08-2021
  */
-
 /**
  * @class   Stack
  * @extends none
@@ -16,31 +15,46 @@
  * @constructor
  * @summary 
  */
-const log = require("../logger.js");
+ const logFile = require('../logger');
 
-var instLog = new log.Logger();
-
-
-function Stack(arrValues) {
-    /**
-     * variables details
-     */
-    var self = this;
-    self._arrValues = arrValues;
-};
-
+ function Stack(arrValues){
+     /**
+      * variables details
+      */
+     var self = this;
+     self._arrValues = arrValues;
+ };
+            
+ var log = new logFile.Logger();
+   
 /**
  * @method  Stack::push
  * @param   value
  * @returns none
  * @summary .push() pushes the value into the array
  */
-Stack.prototype.push = function (nValue) {
-    var self = this;
-    self._arrValues.push(nValue);
-    console.log(self._arrValues);
-}
 
+Stack.prototype.push = function(nValue){
+    
+    // log.writeTrace(msg);
+
+    var self = this;
+    
+    try{
+        
+        self._arrValues.push(nValue);
+        msg = "Entering push function !"
+        log.writeTrace(msg , self._arrValues);
+        
+        msg = nValue + " pushed into array!\n";
+        log.writeTrace(msg , "Value pushed");
+
+    }catch(err){
+        msg = "Error occured!"
+        log.writeTrace(err);
+    }
+
+}
 /**
  * @method  Stack::pop
  * @param   none
@@ -50,40 +64,22 @@ Stack.prototype.push = function (nValue) {
 
 Stack.prototype.pop = function () {
     var self = this;
-    self._arrValues.pop();
-    console.log(self._arrValues);
-    if (self._arrValues.length === 0) {
-        instLog.writeTrace();
+
+    try{
+        self._arrValues.pop();
+        msg = "Entering pop function !"
+        log.writeTrace(msg , self._arrValues);
+
+        msg = self._arrValues[self._arrValues.length - 1] + " popped from array!\n";
+        log.writeTrace(msg  , "Value popped")
+
+    }catch(err){
+
+        msg = "Error occured!"
+        log.writeTrace(err);
     }
 }
 
-/**
- * @method  Stack::peek
- * @param   none
- * @returns value last entered into array
- * @summary .peek gives the top value in stack
- */
-
-Stack.prototype.peek = function () {
-    var self = this;
-    self._arrValues[self._arrValues.length - 1];
-    console.log(self._arrValues);
-}
-
-/**
- * @method  Stack::push
- * @param   value
- * @returns Value pushed into array
- * @summary 
- *
- * @author Gaganpreet Singh
- * Created on: 10 - 08 - 2021
- */
-
-Stack.prototype.getDetails = function () {
-    var self = this;
-    console.log("Array contains " + (self._arrValues.length) + " value and topmost value is " + self._arrValues[self._arrValues.length - 1]);
-}
 
 // _________________________________________________________________________________
 /**
@@ -114,8 +110,19 @@ function Queue(arrValues) {
 
 Queue.prototype.enqueue = function (nValue) {
     var self = this;
-    self._arrValues.push(nValue);
-    console.log(self._arrValues);
+    try{
+        self._arrValues.push(nValue);
+        msg = "Entering enqueue function !"
+        log.writeTrace(msg , self._arrValues);
+
+        msg = nValue + " enqueued into array !\n"
+        log.writeTrace(msg , "Value enqueued");
+
+    }catch(err){
+        msg = "Error occured!"
+        log.writeTrace(err);
+
+    }
 }
 
 /**
@@ -130,10 +137,18 @@ Queue.prototype.enqueue = function (nValue) {
 
 Queue.prototype.dequeue = function () {
     var self = this;
-    self._arrValues.splice(0, 1);
-    console.log(self._arrValues);
-    if (self._arrValues.length === 0) {
-        instLog.writeTrace();
+    try{
+        self._arrValues.splice(0, 1);
+        msg = "Entering dequeue function !"
+        log.writeTrace(msg , self._arrValues);
+
+        msg = self._arrValues[0] + " dequeued from array!\n";
+        log.writeTrace(msg , "Value dequeued");
+
+    }catch(err){
+
+        msg = "Error occured!"
+        log.writeTrace(err);
     }
 }
 

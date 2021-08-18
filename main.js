@@ -26,16 +26,16 @@ var arrValues = [];
 var instArr1 = new file.Stack(arrValues);
 
 instArr1.push(90);
-
-// instArr1.pop();
+instArr1.push(100);
+instArr1.pop();
 
 var instArr1 = new file.Queue(arrValues);
-instArr1.enqueue(100);
-instArr1.enqueue(110);
 
+instArr1.enqueue(90);
+instArr1.enqueue(1);
 instArr1.dequeue();
-instArr1.dequeue();
-instArr1.dequeue();
+
+
 
 
 

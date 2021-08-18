@@ -1,0 +1,38 @@
+
+
+Entering push function !
+90 pushed into array!
+
+Entering push function !
+100 pushed into array!
+
+Entering pop function !
+90 popped from array!
+
+Entering enqueue function !
+90 enqueued into array !
+
+Entering enqueue function !
+1 enqueued into array !
+
+Entering dequeue function !
+90 dequeued from array!
+
+Entering push function !
+90 pushed into array!
+
+Entering push function !
+100 pushed into array!
+
+Entering pop function !
+90 popped from array!
+
+Entering enqueue function !
+90 enqueued into array !
+
+Entering enqueue function !
+1 enqueued into array !
+
+Entering dequeue function !
+90 dequeued from array!
+
