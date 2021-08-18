@@ -27,8 +27,8 @@ function Logger() {
 */
 Logger.prototype.writeTrace = function (strMsg , logToConsole ){
   try{
-    console.log(logToConsole);
     fs.appendFileSync("./trace.txt", strMsg + "\n");
+    console.log(logToConsole);
   }catch(err){
     console.log("Error occured " + "\n" + err);
   }
@@ -45,7 +45,11 @@ Logger.prototype.writeTrace = function (strMsg , logToConsole ){
 * Created on: 16 - 08 - 2021
 */
 
-Logger.prototype.writeTrap = function () {
+Logger.prototype.writeTrap = function (strMsg ) {
+
+    fs.appendFileSync("./trap.txt", strMsg + "\n");
+    console.log("Error occured\n" );
+
 
 }
 

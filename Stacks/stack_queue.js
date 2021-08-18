@@ -17,6 +17,7 @@
  */
  const logFile = require('../logger');
 
+
  function Stack(arrValues){
      /**
       * variables details
@@ -25,7 +26,14 @@
      self._arrValues = arrValues;
  };
             
- var log = new logFile.Logger();
+//  var log = new logFile.Logger();
+
+function Calling(){
+    logFile.Logger.call();
+}
+Calling.prototype = Object.create(logFile.Logger.prototype);
+
+var fnCall = new Calling();
    
 /**
  * @method  Stack::push
@@ -35,23 +43,15 @@
  */
 
 Stack.prototype.push = function(nValue){
-    
-    // log.writeTrace(msg);
-
     var self = this;
-    
+    msg = "Entering push function!\n" + nValue + " pushed into array!\n" ;
+    fnCall.writeTrace(msg , self._arrValues);
     try{
-        
         self._arrValues.push(nValue);
-        msg = "Entering push function !"
-        log.writeTrace(msg , self._arrValues);
         
-        msg = nValue + " pushed into array!\n";
-        log.writeTrace(msg , "Value pushed");
-
     }catch(err){
-        msg = "Error occured!"
-        log.writeTrace(err);
+        
+        fnCall.writeTrap(err);
     }
 
 }
@@ -64,19 +64,15 @@ Stack.prototype.push = function(nValue){
 
 Stack.prototype.pop = function () {
     var self = this;
+    msg = "Entering pop function!\n" + self._arrValues[self._arrValues.length - 1] + " popped from array!\n";
+    fnCall.writeTrace(msg , self._arrValues);
 
     try{
         self._arrValues.pop();
-        msg = "Entering pop function !"
-        log.writeTrace(msg , self._arrValues);
-
-        msg = self._arrValues[self._arrValues.length - 1] + " popped from array!\n";
-        log.writeTrace(msg  , "Value popped")
+        fnCall.writeTrace(""  , self._arrValues);
 
     }catch(err){
-
-        msg = "Error occured!"
-        log.writeTrace(err);
+        fnCall.writeTrap(err);
     }
 }
 
@@ -110,17 +106,15 @@ function Queue(arrValues) {
 
 Queue.prototype.enqueue = function (nValue) {
     var self = this;
+    msg = "Entering enqueue function!\n" + nValue + " enqueued to array!\n";
+
     try{
         self._arrValues.push(nValue);
-        msg = "Entering enqueue function !"
-        log.writeTrace(msg , self._arrValues);
-
-        msg = nValue + " enqueued into array !\n"
-        log.writeTrace(msg , "Value enqueued");
+        fnCall.writeTrace(msg , self._arrValues);
 
     }catch(err){
-        msg = "Error occured!"
-        log.writeTrace(err);
+
+        fnCall.writeTrap(err);
 
     }
 }
@@ -137,18 +131,16 @@ Queue.prototype.enqueue = function (nValue) {
 
 Queue.prototype.dequeue = function () {
     var self = this;
+    msg = "Entering dequeue function!\n" + self._arrValues[0] + " dequeued from array!\n";
+
     try{
         self._arrValues.splice(0, 1);
-        msg = "Entering dequeue function !"
-        log.writeTrace(msg , self._arrValues);
+        fnCall.writeTrace(msg , self._arrValues);
 
-        msg = self._arrValues[0] + " dequeued from array!\n";
-        log.writeTrace(msg , "Value dequeued");
 
     }catch(err){
 
-        msg = "Error occured!"
-        log.writeTrace(err);
+        fnCall.writeTrap(err);
     }
 }
 
