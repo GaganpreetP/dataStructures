@@ -25,8 +25,6 @@
      var self = this;
      self._arrValues = arrValues;
  };
-            
-//  var log = new logFile.Logger();
 
 function Calling(){
     logFile.Logger.call();
@@ -44,13 +42,17 @@ var fnCall = new Calling();
 
 Stack.prototype.push = function(nValue){
     var self = this;
-    msg = "Entering push function!\n" + nValue + " pushed into array!\n" ;
-    fnCall.writeTrace(msg , self._arrValues);
+    msg = "Entering push function!\n" + nValue + " pushed into array!\n"+ "Length of array is :"+ self._arrValues.push(nValue) + "\nIt contains : " + self._arrValues.toString() + "\n";
+    fnCall.writeTrace(msg);
+    
     try{
-        self._arrValues.push(nValue);
-        
+        // self._arrValues.push(nValue) 
+        // var str = self._arrValues.toString();
+        // msg = str;
+        // fnCall.writeTrace(msg);
+       
     }catch(err){
-        
+
         fnCall.writeTrap(err);
     }
 
@@ -64,12 +66,13 @@ Stack.prototype.push = function(nValue){
 
 Stack.prototype.pop = function () {
     var self = this;
-    msg = "Entering pop function!\n" + self._arrValues[self._arrValues.length - 1] + " popped from array!\n";
-    fnCall.writeTrace(msg , self._arrValues);
+    msg = "Entering pop function!\n" + self._arrValues[self._arrValues.length - 1] + " popped from array!\n" + "Length of array is :"+ self._arrValues.pop() + "\nIt contains : " + self._arrValues.toString() + "\n";
+    fnCall.writeTrace(msg);
 
     try{
-        self._arrValues.pop();
-        fnCall.writeTrace(""  , self._arrValues);
+        // var str = self._arrValues.pop();
+        // msg = str;
+        // fnCall.writeTrace(msg);
 
     }catch(err){
         fnCall.writeTrap(err);
@@ -106,11 +109,13 @@ function Queue(arrValues) {
 
 Queue.prototype.enqueue = function (nValue) {
     var self = this;
-    msg = "Entering enqueue function!\n" + nValue + " enqueued to array!\n";
+    msg = "Entering enqueue function!\n" + nValue + " enqueued to array!\n"  +"Length of array is :"+ self._arrValues.push(nValue) + "\nIt contains : " + self._arrValues.toString() + "\n"; 
+    fnCall.writeTrace(msg);
 
     try{
-        self._arrValues.push(nValue);
-        fnCall.writeTrace(msg , self._arrValues);
+
+        // self._arrValues.push(nValue);
+        // fnCall.writeTrace(msg );
 
     }catch(err){
 
@@ -131,11 +136,14 @@ Queue.prototype.enqueue = function (nValue) {
 
 Queue.prototype.dequeue = function () {
     var self = this;
-    msg = "Entering dequeue function!\n" + self._arrValues[0] + " dequeued from array!\n";
+    msg = "Entering dequeue function!\n" + self._arrValues[0] + " dequeued from array!\n" +"Length of array is :"+ self._arrValues.splice(0, 1) + "\nIt contains : " + self._arrValues.toString() + "\n";
+    fnCall.writeTrace(msg);
 
     try{
-        self._arrValues.splice(0, 1);
-        fnCall.writeTrace(msg , self._arrValues);
+        // self._arrValues.splice(0, 1);
+        // var str = self._arrValues.toString();
+        // msg = str;
+        // fnCall.writeTrace(msg);
 
 
     }catch(err){

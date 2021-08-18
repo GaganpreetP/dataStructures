@@ -25,10 +25,10 @@ function Logger() {
 * @author Gaganpreet Singh
 * Created on: 16 - 08 - 2021
 */
-Logger.prototype.writeTrace = function (strMsg , logToConsole ){
+Logger.prototype.writeTrace = function (strMsg ){
   try{
     fs.appendFileSync("./trace.txt", strMsg + "\n");
-    console.log(logToConsole);
+    console.log(strMsg);
   }catch(err){
     console.log("Error occured " + "\n" + err);
   }
