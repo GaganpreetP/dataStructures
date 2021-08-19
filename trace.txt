@@ -1,0 +1,111 @@
+
+19/08/2021 17:23:29 :
+Entering push function !
+
+1 pushed into array!
+Length of array is :1
+It contains : 1
+
+19/08/2021 17:23:29 :
+Entering push function !
+
+3 pushed into array!
+Length of array is :2
+It contains : 1,3
+
+Entering pop function!
+
+3 popped from array!
+Length of array is :1
+It contains : 1
+
+Entering enqueue function !
+
+5 enqueued to array!
+Length of array is :2
+It contains : 1,5
+
+Entering enqueue function !
+
+7 enqueued to array!
+Length of array is :3
+It contains : 1,5,7
+
+Entering dequeue function !
+
+1 dequeued from array!
+Length of array is :2
+It contains : 5,7
+
+null
+1 pushed into array!
+Length of array is :1
+It contains : 1
+
+null
+3 pushed into array!
+Length of array is :2
+It contains : 1,3
+
+Entering pop function!
+
+3 popped from array!
+Length of array is :1
+It contains : 1
+
+Entering enqueue function !
+
+5 enqueued to array!
+Length of array is :2
+It contains : 1,5
+
+Entering enqueue function !
+
+7 enqueued to array!
+Length of array is :3
+It contains : 1,5,7
+
+Entering dequeue function !
+
+1 dequeued from array!
+Length of array is :2
+It contains : 5,7
+
+19/08/2021 17:25:51 :
+Entering push function !
+
+1 pushed into array!
+Length of array is :1
+It contains : 1
+
+19/08/2021 17:25:51 :
+Entering push function !
+
+3 pushed into array!
+Length of array is :2
+It contains : 1,3
+
+Entering pop function!
+
+3 popped from array!
+Length of array is :1
+It contains : 1
+
+Entering enqueue function !
+
+5 enqueued to array!
+Length of array is :2
+It contains : 1,5
+
+Entering enqueue function !
+
+7 enqueued to array!
+Length of array is :3
+It contains : 1,5,7
+
+Entering dequeue function !
+
+1 dequeued from array!
+Length of array is :2
+It contains : 5,7
+

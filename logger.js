@@ -25,11 +25,14 @@ function Logger() {
 * @author Gaganpreet Singh
 * Created on: 16 - 08 - 2021
 */
-Logger.prototype.writeTrace = function (strMsg ){
+Logger.prototype.writeTrace = function (strMsg){
   try{
+
     fs.appendFileSync("./trace.txt", strMsg + "\n");
     console.log(strMsg);
+
   }catch(err){
+
     console.log("Error occured " + "\n" + err);
   }
   
@@ -46,7 +49,7 @@ Logger.prototype.writeTrace = function (strMsg ){
 */
 
 Logger.prototype.writeTrap = function (strMsg ) {
-
+  
     fs.appendFileSync("./trap.txt", strMsg + "\n");
     console.log("Error occured\n" );
 }

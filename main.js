@@ -11,10 +11,10 @@
 /**
  * Module Dependency
  * 
- * @constant file         : The FILE imports stack_queue file from Stacks folder
+ * @constant file  : The FILE imports stack_queue file from Stacks folder
  */
 
-const file = require('./Stacks/stack_queue');
+const {Stack , Queue} = require('./Stacks/stack_queue');
 
 /**
  * variables details
@@ -23,14 +23,14 @@ const file = require('./Stacks/stack_queue');
  */
 
 var arrValues = [];
-var instArr1 = new file.Stack(arrValues);
+var instArr1 = new Stack(arrValues);
 
 instArr1.push(1);
 instArr1.push(3);
 instArr1.pop();
 
 
-var instArr1 = new file.Queue(arrValues);
+var instArr1 = new Queue(arrValues);
 
 instArr1.enqueue(5);
 instArr1.enqueue(7);
