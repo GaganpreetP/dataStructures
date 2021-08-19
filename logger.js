@@ -13,9 +13,14 @@
  */
 
 const fs = require('fs');
+const date = require('date-and-time');
+const now = new Date();
 
-function Logger() {
+function Logger(fileSize) {
+  var self = this;
+  self._fileSize = fileSize;
 }
+
 /**
 * @method  Logger::writeTrace
 * @param   none
@@ -27,7 +32,10 @@ function Logger() {
 */
 Logger.prototype.writeTrace = function (strMsg){
   try{
-
+    
+    var nDate = date.format(now, 'DD/MM/YYYY HH:mm:ss');
+    strMsg = nDate + ":\n" + strMsg ;
+    
     fs.appendFileSync("./trace.txt", strMsg + "\n");
     console.log(strMsg);
 
@@ -49,6 +57,9 @@ Logger.prototype.writeTrace = function (strMsg){
 */
 
 Logger.prototype.writeTrap = function (strMsg ) {
+
+    var nDate = date.format(now, 'DD/MM/YYYY HH:mm:ss');
+    strMsg = nDate + ":\n" + strMsg ;
   
     fs.appendFileSync("./trap.txt", strMsg + "\n");
     console.log("Error occured\n" );

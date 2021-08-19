@@ -16,8 +16,7 @@
  * @summary 
  */
  const logFile = require('../logger');
- const date = require('date-and-time');
-const now = new Date();
+
 
 function Stack(arrValues){
     /**
@@ -43,8 +42,7 @@ Stack.prototype.push = function(nValue){
     
     try{
         
-        var nDate = date.format(now, 'DD/MM/YYYY HH:mm:ss');
-        msg = nDate + " :\nEntering push function !\n";
+        msg = "Entering push function !\n";
         self._logger.writeTrace(msg); 
         
         var res = self._arrValues.push(nValue);
