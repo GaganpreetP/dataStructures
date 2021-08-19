@@ -49,8 +49,6 @@ Logger.prototype.writeTrap = function (strMsg ) {
 
     fs.appendFileSync("./trap.txt", strMsg + "\n");
     console.log("Error occured\n" );
-
-
 }
 
 module.exports = { Logger };

@@ -18,25 +18,27 @@
  const logFile = require('../logger');
 
 
- function Stack(arrValues){
+function Stack(arrValues ){
      /**
       * variables details
       */
      var self = this;
      self._arrValues = arrValues;
- };
-
- 
- var log = new logFile.Logger();
- Stack.prototype.call = function(){
-
-    log.writeTrace(msg);
-     
+    };
+    
+Stack.prototype.call = function(){
+    var self = this;
+    self._logger = new logFile.Logger();
+    self._logger.writeTrace(msg);
+    
 }
+Stack.prototype.error = function(){
+    var self = this;
+    self._logger.writeTrap(msg);
+}
+
 var fnCall = new Stack();
 
-
-   
 /**
  * @method  Stack::push
  * @param   value
@@ -50,13 +52,12 @@ Stack.prototype.push = function(nValue){
     fnCall.call();
     
     try{
-        
         msg = nValue + " pushed into array!\n"+ "Length of array is :"+ self._arrValues.push(nValue) + "\nIt contains : " + self._arrValues.toString() + "\n";
         fnCall.call();
        
     }catch(err){
-
-        fnCall.call();
+        msg = err + "\n";
+        fnCall.error();
     }
 
 }
@@ -66,22 +67,30 @@ Stack.prototype.push = function(nValue){
  * @returns Value popped from array
  * @summary .pop() returns value popped out from array
  */
-
+const fs = require('fs');
 Stack.prototype.pop = function () {
     var self = this;
     msg = "Entering pop function!";
     fnCall.call();
+    
+    if(self._arrValues.length == 0){
+        msg = "Array is empty\n It contains " +  self._arrValues.length + " value!";
+        fs.appendFileSync("./trap.txt" , msg );
+        throw new Error(msg);
+    }
 
-    try{
-        msg = self._arrValues[self._arrValues.length - 1] + " popped from array!\n" + "Length of array is :"+ self._arrValues.pop() + "\nIt contains : " + self._arrValues.toString() + "\n";
-        fnCall.call();
-
+try{
+    msg = self._arrValues.pop() + " popped from array!\n" + "Length of array is :"+ self._arrValues.length + "\nIt contains : " + self._arrValues.toString() + "\n";
+    fnCall.call();
     }catch(err){
-        fnCall.writeTrap(err);
+        
+        msg = err + "\n";
+        fnCall.error(msg);
     }
 }
 
-// _________________________________________________________________________________
+
+// _________________________________________________________________________________________________________________
 /**
  * @class   Queue
  * @extends none
@@ -98,6 +107,18 @@ function Queue(arrValues) {
     self._arrValues = arrValues;
 }
 
+Queue.prototype.call = function(){
+    var self = this;
+    self._logger = new logFile.Logger();
+    self._logger.writeTrace(msg);
+}
+Queue.prototype.error = function(){
+    var self = this;
+    self._logger.writeTrap(msg);
+}
+
+var log = new Queue();
+
 /**
  * @method  Queue::enqueue
  * @param   nValue
@@ -111,19 +132,18 @@ function Queue(arrValues) {
 Queue.prototype.enqueue = function (nValue) {
     var self = this;
     msg = "Entering enqueue function!"; 
-    fnCall.call();
+    log.call();
 
     try{
         msg =  nValue + " enqueued to array!\n"  +"Length of array is :"+ self._arrValues.push(nValue) + "\nIt contains : " + self._arrValues.toString() + "\n"
-        fnCall.call();
+        log.call();
 
     }catch(err){
-
-        fnCall.writeTrap(err);
+        msg = err + "\n";
+        log.error(msg);
 
     }
 }
-
 /**
  * @method  Queue::dequeue
  * @param   none
@@ -137,16 +157,16 @@ Queue.prototype.enqueue = function (nValue) {
 Queue.prototype.dequeue = function () {
     var self = this;
     msg = "Entering dequeue function!";
-    fnCall.call();
+    log.call();
 
     try{
-        msg = self._arrValues[0] + " dequeued from array!\n" +"Length of array is :"+ self._arrValues.splice(0, 1) + "\nIt contains : " + self._arrValues.toString() + "\n";
-        fnCall.call();
+        msg = self._arrValues.splice(0, 1) + " dequeued from array!\n" +"Length of array is :"+ self._arrValues.length + "\nIt contains : " + self._arrValues.toString() + "\n";
+        log.call();
 
 
     }catch(err){
-
-        fnCall.writeTrap(err);
+        msg = err + "\n";
+        log.error(msg);
     }
 }
 

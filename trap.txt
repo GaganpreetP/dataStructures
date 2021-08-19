@@ -1,0 +1,4 @@
+TypeError: log.calls is not a function
+
+TypeError: log.calls is not a function
+

@@ -29,12 +29,12 @@ instArr1.push(1);
 instArr1.push(3);
 instArr1.pop();
 
+
 var instArr1 = new file.Queue(arrValues);
 
 instArr1.enqueue(5);
 instArr1.enqueue(7);
 instArr1.dequeue();
-
 
 
 
