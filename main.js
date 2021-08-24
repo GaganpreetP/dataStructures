@@ -26,15 +26,14 @@ var arrValues = [];
 var instArr1 = new Stack(arrValues);
 
 instArr1.push(1);
-instArr1.push(3);
-instArr1.pop();
+// instArr1.push(3);
 
 
-var instArr1 = new Queue(arrValues);
+// var instArr1 = new Queue(arrValues);
 
-instArr1.enqueue(5);
-instArr1.enqueue(7);
-instArr1.dequeue();
+// instArr1.enqueue(5);
+// instArr1.enqueue(7);
+// instArr1.dequeue();
 
 
 

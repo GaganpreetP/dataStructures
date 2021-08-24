@@ -15,37 +15,73 @@
 const fs = require('fs');
 const date = require('date-and-time');
 const now = new Date();
+var nDateTime = date.format(now, 'HH-mm-ss_DD-MM-YYYY');
 
-function Logger(fileSize) {
+
+function Logger() {
+  
   var self = this;
-  self._fileSize = fileSize;
+  self._maxFile = 5;
+  self._size = 85;
+  self._currFile = `./Tracing/trace.${nDateTime}.txt`;
 }
 
 /**
-* @method  Logger::writeTrace
-* @param   none
-* @returns none
-* @summary traces each and every operation done on array
-*
-* @author Gaganpreet Singh
-* Created on: 16 - 08 - 2021
-*/
-Logger.prototype.writeTrace = function (strMsg){
-  try{
-    
-    var nDate = date.format(now, 'DD/MM/YYYY HH:mm:ss');
-    strMsg = nDate + ":\n" + strMsg ;
-    
-    fs.appendFileSync("./trace.txt", strMsg + "\n");
-    console.log(strMsg);
+ * @method  Logger::writeTrace
+ * @param   none
+ * @returns none
+ * @summary traces each and every operation done on array
+ *
+ * @author Gaganpreet Singh
+ * Created on: 16 - 08 - 2021
+ */
 
-  }catch(err){
+Logger.prototype.readDir = function(){
+  
+    const liOfFiles = fs.readdirSync('./Tracing');
+    console.log(liOfFiles);
+    // try{
+    //   if(liOfFiles[0] == null){
+    //   fs.writeFileSync(self._currFile , "");
+    //   }
 
-    console.log("Error occured " + "\n" + err);
+    // }catch(err){
+    // console.log(err);
+    // }
+  }
+
+  
+  Logger.prototype.stats = function(){
+
+    var self = this;
+   
+    const stats = fs.statSync(self._currFile);
+    const fileSizeInBytes = stats.size;
+    console.log(fileSizeInBytes);
+
+    if (fileSizeInBytes >= self._size){
+    
+        var nUpdatedDateTime = date.format(now , 'HH-mm-ss_DD-MM-YYYY');
+        self._currFile = `./Tracing/trace.${nUpdatedDateTime}.txt`;
+        
+      }
+    }
+  
+  Logger.prototype.writeTrace = function (strMsg) {
+
+    var self = this;
+    self.readDir();
+
+    try {
+      fs.appendFileSync(self._currFile , strMsg + "\n");
+      self.stats(); 
+      console.log(strMsg);
+
+  }catch (err) {
+      console.log("Error occured " + "\n" + err);
+    }
   }
   
-}
-
 /**
 * @method  Logger::writeTrap
 * @param   none
@@ -56,13 +92,13 @@ Logger.prototype.writeTrace = function (strMsg){
 * Created on: 16 - 08 - 2021
 */
 
-Logger.prototype.writeTrap = function (strMsg ) {
+Logger.prototype.writeTrap = function (strMsg) {
 
-    var nDate = date.format(now, 'DD/MM/YYYY HH:mm:ss');
-    strMsg = nDate + ":\n" + strMsg ;
-  
-    fs.appendFileSync("./trap.txt", strMsg + "\n");
-    console.log("Error occured\n" );
+  strMsg = `${nDateTime}` + ":\n" + strMsg;
+
+  fs.appendFileSync("./Trapping/trap.txt", strMsg + "\n");
+  console.log("Error occured\n");
+  console.log(strMsg);
 }
 
 module.exports = { Logger };

@@ -1,0 +1,45 @@
+16-10-58_24-08-2021:
+ReferenceError: self is not defined
+
+16-11-06_24-08-2021:
+TypeError: self.stats is not a function
+
+16-14-48_24-08-2021:
+Error: ENOENT: no such file or directory, stat '../trace.16-14-48_24-08-2021.txt'
+
+16-14-48_24-08-2021:
+Error: ENOENT: no such file or directory, stat '../trace.16-14-48_24-08-2021.txt'
+
+16-16-16_24-08-2021:
+Error: ENOENT: no such file or directory, stat '../trace.16-16-16_24-08-2021.txt'
+
+16-16-16_24-08-2021:
+Error: ENOENT: no such file or directory, stat '../trace.16-16-16_24-08-2021.txt'
+
+16-17-24_24-08-2021:
+Error: ENOENT: no such file or directory, stat '../trace.16-17-24_24-08-2021.txt'
+
+16-17-24_24-08-2021:
+Error: ENOENT: no such file or directory, stat '../trace.16-17-24_24-08-2021.txt'
+
+16-22-46_24-08-2021:
+Error: ENOENT: no such file or directory, stat './Tracing/trace.16-22-46_24-08-2021.txt'
+
+16-22-46_24-08-2021:
+Error: ENOENT: no such file or directory, stat './Tracing/trace.16-22-46_24-08-2021.txt'
+
+16-30-56_24-08-2021:
+Error: ENOENT: no such file or directory, stat './Tracing/trace.16-30-56_24-08-2021.txt'
+
+16-30-56_24-08-2021:
+Error: ENOENT: no such file or directory, stat './Tracing/trace.16-30-56_24-08-2021.txt'
+
+16-53-08_24-08-2021:
+Error: ENOENT: no such file or directory, stat './Tracing/trace.16-53-08_24-08-2021.txt'
+
+17-14-35_24-08-2021:
+Error: ENOENT: no such file or directory, stat './Tracing/trace.17-14-35_24-08-2021.txt'
+
+17-25-01_24-08-2021:
+Error: ENOENT: no such file or directory, stat './Tracing/trace.17-25-01_24-08-2021.txt'
+

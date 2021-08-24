@@ -17,7 +17,6 @@
  */
  const logFile = require('../logger');
 
-
 function Stack(arrValues){
     /**
     * variables details
@@ -65,14 +64,14 @@ Stack.prototype.push = function(nValue){
  * @returns Value popped from array
  * @summary .pop() returns value popped out from array
  */
-const fs = require('fs');
+
 Stack.prototype.pop = function () {
     var self = this;
     var msg = null;
     
     if(self._arrValues.length == 0){
         msg = "Array is empty\n It contains " +  self._arrValues.length + " value!";
-        fs.appendFileSync("./trap.txt" , msg );
+        self._logger.writeTrap(msg);
         throw new Error(msg);
     }
     
