@@ -17,13 +17,12 @@ const date = require('date-and-time');
 const now = new Date();
 var nDateTime = date.format(now, 'HH-mm-ss_DD-MM-YYYY');
 
-
 function Logger() {
   
   var self = this;
   self._maxFile = 5;
-  self._size = 85;
-  self._currFile = `./Tracing/trace.${nDateTime}.txt`;
+  self._size = 80;
+  
 }
 
 /**
@@ -37,50 +36,58 @@ function Logger() {
  */
 
 Logger.prototype.readDir = function(){
-  
-    const liOfFiles = fs.readdirSync('./Tracing');
-    console.log(liOfFiles);
-    // try{
-    //   if(liOfFiles[0] == null){
-    //   fs.writeFileSync(self._currFile , "");
-    //   }
 
-    // }catch(err){
-    // console.log(err);
-    // }
+  var self = this;
+  self._currFile = `./Tracing/trace.${nDateTime}.txt`;
+  
+  const liOfFiles = fs.readdirSync('./Tracing');
+  console.log(liOfFiles);
+
+  if(liOfFiles[0] == null){
+
+    fs.writeFileSync(self._currFile , " ");
+  
+  }else{
+
+    console.log(liOfFiles)
+
   }
-
   
-  Logger.prototype.stats = function(){
+}
 
-    var self = this;
-   
-    const stats = fs.statSync(self._currFile);
-    const fileSizeInBytes = stats.size;
-    console.log(fileSizeInBytes);
+Logger.prototype.stats = function(){
 
-    if (fileSizeInBytes >= self._size){
-    
-        var nUpdatedDateTime = date.format(now , 'HH-mm-ss_DD-MM-YYYY');
-        self._currFile = `./Tracing/trace.${nUpdatedDateTime}.txt`;
-        
-      }
+  var self = this;
+  const statOfFiles = fs.statSync(self._currFile);
+  const fileSizeInBytes = statOfFiles.size;
+  console.log(fileSizeInBytes);
+
+  if (fileSizeInBytes >=  self._size){
+
+    const now = new Date();
+    var nDateTime = date.format(now, 'HH-mm-ss_DD-MM-YYYY');
+    self._currFile = `./Tracing/trace.${nDateTime}.txt`;
+    // fs.writeFileSync(self._currFile, "");
+
     }
+  }
   
-  Logger.prototype.writeTrace = function (strMsg) {
+Logger.prototype.writeTrace = function (strMsg){
 
-    var self = this;
+  var self = this;
+
+  
+  try {
     self.readDir();
+    self.stats();
+    fs.appendFileSync(self._currFile , strMsg + "\n");
 
-    try {
-      fs.appendFileSync(self._currFile , strMsg + "\n");
-      self.stats(); 
-      console.log(strMsg);
+    console.log(strMsg);
 
-  }catch (err) {
-      console.log("Error occured " + "\n" + err);
-    }
+}catch (err) {
+    console.log("Error occured " + "\n" + err);
   }
+}
   
 /**
 * @method  Logger::writeTrap

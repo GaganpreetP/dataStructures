@@ -26,7 +26,7 @@ var arrValues = [];
 var instArr1 = new Stack(arrValues);
 
 instArr1.push(1);
-// instArr1.push(3);
+instArr1.push(3);
 
 
 // var instArr1 = new Queue(arrValues);

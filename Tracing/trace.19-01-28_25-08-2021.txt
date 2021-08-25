@@ -1,0 +1,6 @@
+ Entering push function !
+
+1 pushed into array!
+Length of array is :1
+It contains : 1
+
