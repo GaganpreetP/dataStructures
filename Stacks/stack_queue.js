@@ -15,9 +15,9 @@
  * @constructor
  * @summary 
  */
- const logFile = require('../logger');
+const logFile = require('../logger');
 
-function Stack(arrValues){
+function Stack(arrValues) {
     /**
     * variables details
     */
@@ -35,22 +35,26 @@ function Stack(arrValues){
  */
 
 
-Stack.prototype.push = function(nValue){
+Stack.prototype.push = function (nValue) {
     var self = this;
     var msg = null;
-    
-    try{
-        
-        msg = "Entering push function !\n";
-        self._logger.writeTrace(msg); 
-        
+
+    try {
+
+        msg = " Entering push function !";
+        self._logger.writeTrace(msg);
+        //     self._logger.writeTrap(msg);
+        //     self._logger.writeTrap(msg);
+        // }
+
+
         var res = self._arrValues.push(nValue);
         var str = self._arrValues.toString();
 
-        msg = nValue + " pushed into array!\nLength of array is :"+ res + "\nIt contains : " + str + "\n";
+        msg = nValue + " pushed into array! Length of array is :" + res + ". It contains : " + str + "\n";
         self._logger.writeTrace(msg);
-       
-    }catch(err){
+
+    } catch (err) {
 
         msg = err + "\n";
         self._logger.writeTrap(msg);
@@ -68,14 +72,14 @@ Stack.prototype.push = function(nValue){
 Stack.prototype.pop = function () {
     var self = this;
     var msg = null;
-    
-    if(self._arrValues.length == 0){
-        msg = "Array is empty\n It contains " +  self._arrValues.length + " value!";
+
+    if (self._arrValues.length == 0) {
+        msg = "Array is empty\n It contains " + self._arrValues.length + " value!";
         self._logger.writeTrap(msg);
         throw new Error(msg);
     }
-    
-    try{
+
+    try {
 
         msg = "Entering pop function!\n";
         self._logger.writeTrace(msg);
@@ -84,11 +88,11 @@ Stack.prototype.pop = function () {
         var str = self._arrValues.toString()
         var lenStr = self._arrValues.length
 
-        msg = valPop + " popped from array!\nLength of array is :"+ lenStr + "\nIt contains : " + str + "\n";
+        msg = valPop + " popped from array!\nLength of array is :" + lenStr + "\nIt contains : " + str + "\n";
         self._logger.writeTrace(msg);
 
-    }catch(err){
-        
+    } catch (err) {
+
         msg = err + "\n";
         self._logger.writeTrap(msg);
     }
@@ -126,8 +130,8 @@ function Queue(arrValues) {
 Queue.prototype.enqueue = function (nValue) {
     var self = this;
     var msg = null;
-    
-    try{
+
+    try {
 
         msg = "Entering enqueue function !\n"
         self._logger.writeTrace(msg);
@@ -135,10 +139,10 @@ Queue.prototype.enqueue = function (nValue) {
         var pushVal = self._arrValues.push(nValue)
         var convToStr = self._arrValues.toString()
 
-        msg =  nValue + " enqueued to array!\nLength of array is :"+ pushVal + "\nIt contains : " + convToStr + "\n";
+        msg = nValue + " enqueued to array!\nLength of array is :" + pushVal + "\nIt contains : " + convToStr + "\n";
         self._logger.writeTrace(msg);
 
-    }catch(err){
+    } catch (err) {
 
         msg = err + "\n";
         self._logger.writeTrap(msg);
@@ -157,8 +161,8 @@ Queue.prototype.enqueue = function (nValue) {
 
 Queue.prototype.dequeue = function () {
     var self = this;
-    
-    try{
+
+    try {
 
         msg = "Entering dequeue function !\n"
         self._logger.writeTrace(msg);
@@ -166,12 +170,12 @@ Queue.prototype.dequeue = function () {
         var splVal = self._arrValues.splice(0, 1)
         var lenStr = self._arrValues.length
         var convStr = self._arrValues.toString()
-        
-        msg =  splVal + " dequeued from array!\nLength of array is :"+ lenStr + "\nIt contains : " + convStr + "\n";
+
+        msg = splVal + " dequeued from array!\nLength of array is :" + lenStr + "\nIt contains : " + convStr + "\n";
         self._logger.writeTrace(msg);
 
 
-    }catch(err){
+    } catch (err) {
 
         msg = err + "\n";
         self._logger.writeTrap(msg);

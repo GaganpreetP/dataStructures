@@ -14,15 +14,99 @@
 
 const fs = require('fs');
 const date = require('date-and-time');
-const now = new Date();
-var nDateTime = date.format(now, 'HH-mm-ss_DD-MM-YYYY');
 
 function Logger() {
-  
+
   var self = this;
-  self._maxFile = 5;
-  self._size = 80;
-  
+  self._maxFile = 2;
+  self._size = 500; // byte
+  // self.initiate();
+
+}
+
+// Logger.prototype.initiate = function(){
+//   self.readDir(dir , file);
+//   self.stats();
+// };
+
+Logger.prototype.getFileName = function (file) {
+
+  var self = this;
+  const now = new Date();
+  var nDateTime = date.format(now, 'HH-mm-ss_DD-MM-YYYY');
+
+  if (file == 'trace') {
+
+    return `./Tracing/trace.${nDateTime}.txt`;
+  }
+
+  if (file == 'trap') {
+
+    return `./Trapping/trap.${nDateTime}.txt`;
+  }
+
+}
+
+Logger.prototype.readDir = function (dir, file) {
+
+  var self = this;
+
+  const liOfFiles = fs.readdirSync(`./${dir}`);
+  console.log(liOfFiles);
+
+  if (liOfFiles.length >= self._maxFile) {
+
+    fs.unlinkSync(`./${dir}/${liOfFiles[0]}`);
+  }
+
+  if (liOfFiles[0] == null) {
+
+    var name = self.getFileName(file);
+    self.name = name;
+    fs.writeFileSync(self.name, " ");
+
+  } else {
+
+    try {
+
+      for (let files in liOfFiles) {
+
+        const info = fs.statSync(`./${dir}/${liOfFiles[files]}`);
+        const sizeOfFiles = info.size;
+
+        if (sizeOfFiles <= self._size) {
+
+          self.name = `./${dir}/${liOfFiles[files]}`;
+          
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+  }
+}
+
+Logger.prototype.stats = function (file) {
+
+  var self = this;
+
+  try {
+
+    const statOfFiles = fs.statSync(self.name);
+    const fileSizeInBytes = statOfFiles.size;
+    console.log(fileSizeInBytes);
+
+    if (fileSizeInBytes >= self._size) {
+
+      var newFile = self.getFileName(file);
+      console.log('new file assigned' + newFile);
+      self.name = newFile;
+    }
+  } catch (err) {
+    console.log('Exception occured in stat function');
+    console.log(err);
+  }
 }
 
 /**
@@ -35,60 +119,31 @@ function Logger() {
  * Created on: 16 - 08 - 2021
  */
 
-Logger.prototype.readDir = function(){
-
-  var self = this;
-  self._currFile = `./Tracing/trace.${nDateTime}.txt`;
-  
-  const liOfFiles = fs.readdirSync('./Tracing');
-  console.log(liOfFiles);
-
-  if(liOfFiles[0] == null){
-
-    fs.writeFileSync(self._currFile , " ");
-  
-  }else{
-
-    console.log(liOfFiles)
-
-  }
-  
-}
-
-Logger.prototype.stats = function(){
-
-  var self = this;
-  const statOfFiles = fs.statSync(self._currFile);
-  const fileSizeInBytes = statOfFiles.size;
-  console.log(fileSizeInBytes);
-
-  if (fileSizeInBytes >=  self._size){
-
-    const now = new Date();
-    var nDateTime = date.format(now, 'HH-mm-ss_DD-MM-YYYY');
-    self._currFile = `./Tracing/trace.${nDateTime}.txt`;
-    // fs.writeFileSync(self._currFile, "");
-
-    }
-  }
-  
-Logger.prototype.writeTrace = function (strMsg){
+Logger.prototype.writeTrace = function (strMsg) {
 
   var self = this;
 
-  
+  const now = new Date();
+  var nDateTime = date.format(now, 'HH-mm-ss_DD-MM-YYYY');
+
+  var path = 'Tracing';
+  self.readDir(path, 'trace');
+
+
   try {
-    self.readDir();
-    self.stats();
-    fs.appendFileSync(self._currFile , strMsg + "\n");
+    self.stats('trace');
 
+    strMsg = ` ${nDateTime}` + ":" + strMsg;
+    fs.appendFileSync(self.name, strMsg + "\n");
+
+    self._fileMap[self.name]
     console.log(strMsg);
 
-}catch (err) {
+  } catch (err) {
     console.log("Error occured " + "\n" + err);
   }
 }
-  
+
 /**
 * @method  Logger::writeTrap
 * @param   none
@@ -101,11 +156,24 @@ Logger.prototype.writeTrace = function (strMsg){
 
 Logger.prototype.writeTrap = function (strMsg) {
 
-  strMsg = `${nDateTime}` + ":\n" + strMsg;
+  var self = this;
+  var path = 'Trapping';
+  self.readDir(path, 'trap');
 
-  fs.appendFileSync("./Trapping/trap.txt", strMsg + "\n");
-  console.log("Error occured\n");
-  console.log(strMsg);
+  try {
+
+    self.stats('trap');
+    const now = new Date();
+    var nDateTime = date.format(now, 'HH-mm-ss_DD-MM-YYYY');
+    strMsg = `${nDateTime}` + ": " + strMsg;
+    fs.appendFileSync(self.name, strMsg + "\n");
+    console.log("Error occured\n");
+    console.log(strMsg);
+
+  } catch (err) {
+
+    console.log(err);
+  }
 }
 
 module.exports = { Logger };

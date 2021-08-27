@@ -1,6 +1,0 @@
-Entering push function !
-
-3 pushed into array!
-Length of array is :2
-It contains : 1,3
-
