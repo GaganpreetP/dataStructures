@@ -29,9 +29,9 @@ var instArr1 = new Stack(arrValues);
 instArr1.push(1);
 instArr1.push(3);
 
-setInterval(function() {
-    instArr1.push(5);
-},2000);
+// setInterval(function() {
+//     instArr1.push(5);
+// },2000);
 
 
 // var instArr1 = new Queue(arrValues);

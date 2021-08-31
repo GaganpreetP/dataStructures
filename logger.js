@@ -52,16 +52,25 @@ Logger.prototype.getFileName = function (file) {
   // var self = this;
   const now = new Date();
   var nDateTime = date.format(now, 'HH-mm-ss_DD-MM-YYYY');
-  
-  if (file == 'trace') {
+  try{
+
+    if (file == 'trace') {
+      
+      return `./Tracing/trace.${nDateTime}.txt`;
+    }
     
-    return `./Tracing/trace.${nDateTime}.txt`;
+    if (file == 'trap') {
+      
+      return `./Trapping/trap.${nDateTime}.txt`;
+    }
+
+  }catch (err) {
+
+    msg = "Error " + err;
+    self.writeTrap(msg);
+
   }
   
-  if (file == 'trap') {
-    
-    return `./Trapping/trap.${nDateTime}.txt`;
-  }
   
 }
 
@@ -110,7 +119,8 @@ Logger.prototype.readDir = function (dir, file) {
         }
       }
     } catch (err) {
-      console.log(err);
+        msg = "Error " + err
+        self.writeTrap(msg);
     }
     
   }
@@ -140,8 +150,8 @@ Logger.prototype.stats = function () {
     
   } catch (err) {
     
-    console.log('Exception occured in stat function');
-    console.log(err);
+    msg = 'Exception occured in stat function \n' + err;
+    self.writeTrap(msg);
     
   }
 
@@ -162,14 +172,21 @@ Logger.prototype.stats = function () {
 Logger.prototype.checkFile = function(file){
 
   var self = this;
+  try{
 
-  if (self._fileSizeInBytes >= self._size) {
-      
-    var newFile = self.getFileName(file);
-    self._name = newFile;
-    return self._name;
+    if (self._fileSizeInBytes >= self._size) {
+        
+      var newFile = self.getFileName(file);
+      self._name = newFile;
+      return self._name;
+  
+    }
+  }catch(err){
 
+    msg = err;
+    self.writeTrap(msg);
   }
+
 }
 
 /**
@@ -186,8 +203,15 @@ Logger.prototype.initiate = function(){
 
   var self = this;
 
-  self.readDir('Tracing' , 'trace');
-  self.stats();
+  try{
+    self.readDir('Tracing' , 'trace');
+    self.stats();
+
+  }catch(err){
+
+    msg = err;
+    self.writeTrap(msg);
+  }
   
 };
 
@@ -218,7 +242,8 @@ Logger.prototype.writeTrace = function (strMsg) {
     self.checkFile('trace');
 
   } catch (err) {
-    console.log("Error occured " + "\n" + err);
+    msg = ("Error occured " + "\n" + err);
+    self.writeTrap(msg);
   }
 }
 
@@ -235,6 +260,7 @@ Logger.prototype.writeTrace = function (strMsg) {
 Logger.prototype.writeTrap = function (strMsg) {
 
   var self = this;
+  var errFile = self.getFileName('trap');
 
   try {
     
@@ -242,7 +268,7 @@ Logger.prototype.writeTrap = function (strMsg) {
     var nDateTime = date.format(now, 'HH-mm-ss_DD-MM-YYYY');
 
     strMsg = `${nDateTime}` + ": " + strMsg;
-    fs.appendFileSync(self._name, strMsg + "\n");
+    fs.appendFileSync(errFile , strMsg + "\n");
 
     console.log("Error occured\n");
     console.log(strMsg);
@@ -252,7 +278,9 @@ Logger.prototype.writeTrap = function (strMsg) {
 
   } catch (err) {
 
-    console.log(err);
+    msg = err;
+    self.writeTrap(msg);
+
   }
 }
 
