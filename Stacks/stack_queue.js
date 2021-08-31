@@ -43,10 +43,6 @@ Stack.prototype.push = function (nValue) {
 
         msg = " Entering push function !";
         self._logger.writeTrace(msg);
-        //     self._logger.writeTrap(msg);
-        //     self._logger.writeTrap(msg);
-        // }
-
 
         var res = self._arrValues.push(nValue);
         var str = self._arrValues.toString();
